@@ -1,14 +1,13 @@
 import os
 import ants
-import numpy as np
-import nibabel as nib
-import subprocess
 import argparse
-from fsl.wrappers import fslmaths, bet
+import subprocess
 import pandas as pd
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
-
+from fsl.wrappers import fslmaths, bet
+from fpdf import FPDF
+import nibabel as nib
+import numpy as np
+import matplotlib.pyplot as plt
 # AUCMEDI libraries
 from aucmedi import *
 from aucmedi.data_processing.io_loader import sitk_loader
@@ -16,6 +15,9 @@ from aucmedi.data_processing.subfunctions import *
 from aucmedi.xai import xai_decoder
 from aucmedi.ensemble import predict_augmenting
 from aucmedi import ImageAugmentation, DataGenerator
+from PIL import Image, ImageDraw
+from PIL import ImageFont
+
 
 
 def dicom_to_nifti(dicom_dir, output_dir):
@@ -75,7 +77,7 @@ def rigid(fixed, moving):
 
 
 def preprocess(input_path, output_path):
-    TEMPLATE_PATH = '/mnt/c/Users/ncrhurh/PycharmProjects/HSA_CNN/ct_template2mni.nii.gz'  # Provide the template path
+    TEMPLATE_PATH = 'ct_template2mni.nii.gz'  # Provide the template path
 
     for patient_folder in os.listdir(input_path):
         dicom_dir = os.path.join(input_path, patient_folder)  # Path to DICOM folder
@@ -184,16 +186,11 @@ def predict_aucmedi(path_images, path_model, path_output, path_xai=None, gpu=0):
     if path_xai is not None:
         xai_decoder(test_gen, model, preds, overlay=True, out_path=path_output)
 
-import argparse
-import subprocess
-import pandas as pd
-from fsl.wrappers import fslmaths, bet
+from PIL import Image
 
-from fpdf import FPDF
-import os
-import nibabel as nib
-import numpy as np
-import matplotlib.pyplot as plt
+from PIL import Image
+
+from PIL import Image
 
 def generate_report(output_dir, subject_id, volume_nifti, xai_nifti, probability):
     # Create a PDF report
@@ -205,89 +202,146 @@ def generate_report(output_dir, subject_id, volume_nifti, xai_nifti, probability
     c.add_page()
 
     # Set the font for the report
-    c.set_font("Helvetica", size=12)
+    c.set_font("Arial", size=12)
+
+    # Add the header image
+    header_image = 'unvrh.png'  # Replace with the absolute path to the image file
+    c.image(header_image, x=c.w - 60, y=10, w=50)
 
     # Add the subject ID and probability to the report
-    c.set_font("Helvetica", size=16, style="B")
+    c.set_font("Arial", size=16, style="B")
+    c.ln(60)
     c.cell(0, 15, f"Subject ID: {subject_id}", ln=True, align='L')
-    c.cell(0, 15, f"Probability of Death: {probability:.2f}", ln=True, align='L')
+    c.set_font("Arial", size=16)
+    c.cell(0, 15, f"Probability of Death: {probability:.2f}%", ln=True, align='L')
 
-    # Load the NIfTI volume
-    volume_img = nib.load(volume_nifti)
-    volume_data = volume_img.get_fdata()
-
-    # Extract the center slices for axial, coronal, and sagittal views
-    z_center = volume_data.shape[2] // 2
-    axial_slice = volume_data[:, :, z_center].squeeze().transpose()
-    coronal_slice = volume_data[:, z_center, :].squeeze().transpose()
-    sagittal_slice = volume_data[z_center, :, :].squeeze().transpose()
-
-    # Save the slices as a PNG file
+    # Generate volume slices
     volume_slices_file = os.path.join(output_dir, 'volume_slices.png')
-    plt.figure()
-    plt.subplot(131)
-    plt.imshow(axial_slice.T, cmap='gray')  # Transpose axial_slice
-    plt.title('Axial')
-    plt.axis('off')
+    create_volume_grid(volume_nifti, volume_slices_file)
 
-    plt.subplot(132)
-    plt.imshow(coronal_slice.T, cmap='gray')  # Transpose coronal_slice
-    plt.title('Coronal')
-    plt.axis('off')
-
-    plt.subplot(133)
-    plt.imshow(sagittal_slice.T, cmap='gray')  # Transpose sagittal_slice
-    plt.title('Sagittal')
-    plt.axis('off')
-
-    plt.savefig(volume_slices_file, bbox_inches='tight')
-    plt.close()
-
-    # Draw the volume slices in the PDF report
-    c.set_font("Helvetica", size=12)
-    c.cell(0, 15, "Volume Slices:", ln=True, align='L')
-    c.image(volume_slices_file, x=c.get_x(), y=c.get_y() + 10, w=180, h=120)
+    # Add volume slices to the PDF report
+    c.set_font("Arial", size=14, style="B")
+    c.ln(20)
+    c.cell(0, 15, "Volume Slices", ln=True, align='L')
+    c.image(volume_slices_file, x=10, y=c.get_y() + 10, w=180, h=120)
     c.ln(130)
 
-    # Load the XAI NIfTI image
-    xai_img = nib.load(xai_nifti)
-    xai_data = xai_img.get_fdata()
+    # Start a new page for XAI slices
+    c.add_page()
 
-    # Extract the center slices for axial, coronal, and sagittal views
-    z_center = xai_data.shape[2] // 2
-    axial_slice = xai_data[:, :, z_center].squeeze().transpose()
-    coronal_slice = xai_data[:, z_center, :].squeeze().transpose()
-    sagittal_slice = xai_data[z_center, :, :].squeeze().transpose()
-
-    # Save the slices as a PNG file
+    # Generate XAI slices
     xai_slices_file = os.path.join(output_dir, 'xai_slices.png')
-    plt.figure()
-    plt.subplot(131)
-    plt.imshow(axial_slice.T, cmap='gray')  # Transpose axial_slice
-    plt.title('Axial')
-    plt.axis('off')
+    create_xai_grid(xai_nifti, xai_slices_file)
 
-    plt.subplot(132)
-    plt.imshow(coronal_slice.T, cmap='gray')  # Transpose coronal_slice
-    plt.title('Coronal')
-    plt.axis('off')
-
-    plt.subplot(133)
-    plt.imshow(sagittal_slice.T, cmap='gray')  # Transpose sagittal_slice
-    plt.title('Sagittal')
-    plt.axis('off')
-
-    plt.savefig(xai_slices_file, bbox_inches='tight')
-    plt.close()
-
-    # Draw the XAI slices in the PDF report
-    c.set_font("Helvetica", size=12)
-    c.cell(0, 15, "XAI Slices:", ln=True, align='L')
-    c.image(xai_slices_file, x=c.get_x(), y=c.get_y() + 10, w=180, h=120)
+    # Add XAI slices to the PDF report
+    c.set_font("Arial", size=14, style="B")
+    c.cell(0, 15, "XAI Slices", ln=True, align='L')
+    c.image(xai_slices_file, x=10, y=c.get_y() + 10, w=180, h=120)
     c.ln(130)
+
+    # Set the footer style
+    c.set_font("Arial", size=12, style="I")
+    c.set_text_color(128)
+
+    # Add the footer
+    c.cell(0, 10, "Generated by YourAppName", 0, 0, 'C')
 
     # Save and close the PDF report
     c.output(report_file)
+
+
+
+def create_volume_grid(nifti_file, output_file):
+    # Load the NIfTI volume
+    img = nib.load(nifti_file)
+    data = img.get_fdata()
+
+    # Exclude the top and bottom slices
+    data = data[:, :, 1:-1]
+
+    # Get the middle indices for each dimension
+    x_mid = data.shape[0] // 2
+    y_mid = data.shape[1] // 2
+    z_mid = data.shape[2] // 2
+
+    # Create a 4x4 grid for plotting
+    fig, axs = plt.subplots(4, 4, figsize=(15, 15))
+
+    # Plot rotated axial slices
+    for i in range(4):
+        for j in range(4):
+            slice_index = (z_mid - 1) + i * 2 + j
+
+            if slice_index >= 0 and slice_index < data.shape[2]:
+                slice_data = data[:, :, slice_index]
+
+                # Normalize the data to 0-1 range for proper color mapping
+                slice_data = (slice_data - np.min(slice_data)) / (np.max(slice_data) - np.min(slice_data))
+
+                rotated_slice = np.rot90(slice_data, k=1)  # Rotate the slice by 90 degrees clockwise
+
+                axs[i, j].imshow(rotated_slice, cmap='gray')
+                axs[i, j].axis('off')
+            else:
+                axs[i, j].axis('off')
+
+    # Save the grid of slices as a single image file
+    plt.tight_layout()
+    plt.savefig(output_file)
+    plt.close(fig)
+
+    print(f"Grid of slices saved as a single image: {output_file}")
+
+def create_xai_grid(nifti_file, output_file):
+    # Load the NIfTI volume
+    img = nib.load(nifti_file)
+    data = img.get_fdata()
+
+    # Exclude the top and bottom slices
+    data = data[:, :, 1:-1, 0]
+
+    # Get the shape of the data
+    num_slices = data.shape[2]
+
+    # Get the indices for the middle slices
+    middle_slice_index = num_slices // 2
+
+    # Determine the starting and ending indices for the grid
+    start_index = middle_slice_index - 7  # Show 4 slices before and 3 slices after the middle
+    end_index = middle_slice_index + 4   # Show 4 slices after the middle
+
+    # Create a 4x4 grid for plotting
+    fig, axs = plt.subplots(4, 4, figsize=(10, 10))
+
+    # Iterate through the grid and plot the slices
+    for i in range(4):
+        for j in range(4):
+            slice_index = start_index + i * 4 + j
+
+            if slice_index >= 0 and slice_index < num_slices:
+                slice_data = data[:, :, slice_index]
+
+                # Normalize the data to 0-1 range for proper color mapping
+                slice_data = (slice_data - np.min(slice_data)) / (np.max(slice_data) - np.min(slice_data))
+
+                # Increase the contrast by adjusting the intensity range
+                slice_data = np.clip(slice_data * 2.0 - 0.5, 0.0, 1.0)
+
+                # Rotate the slice by 180 degrees
+                rotated_slice = np.rot90(slice_data, k=1)
+
+                axs[i, j].imshow(rotated_slice, cmap='gray', vmin=0.0, vmax=1.0)
+                axs[i, j].axis('off')
+
+            else:
+                axs[i, j].axis('off')
+
+    # Save the grid of slices as a single image file
+    fig.tight_layout()
+    fig.savefig(output_file)
+    plt.close(fig)
+
+    print(f"Grid of slices saved as a single image: {output_file}")
 
 
 
