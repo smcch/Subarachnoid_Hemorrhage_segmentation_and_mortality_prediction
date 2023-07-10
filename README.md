@@ -39,4 +39,4 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 
 For any questions or inquiries, please contact:
 
-- Santiago Cepeda: [santiago.cepeda@example.com](mailto:santiago.cepeda@example.com)
+- Santiago Cepeda: [santiago.cepeda@example.com](mailto:scepedac@saludcastillayleon.es)
