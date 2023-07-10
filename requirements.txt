@@ -1,5 +1,5 @@
 antspyx==0.3.8
-aucmedi @ git+https://github.com/frankkramer-lab/aucmedi.git@c712cd4df63951ab93e28ff37f407bc2f3fcb4b7
+git+https://github.com/frankkramer-lab/aucmedi.git@c712cd4df63951ab93e28ff37f407bc2f3fcb4b7
 fpdf==1.7.2
 fslpy==3.13.2
 matplotlib==3.5.2
