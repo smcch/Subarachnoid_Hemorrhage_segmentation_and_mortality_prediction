@@ -4,14 +4,34 @@ This repository provides a pipeline for predicting mortality in patients with su
 
 ## Installation
 
+# Download the Miniconda installer
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+
+# Run the installer script
+bash Miniconda3-latest-MacOSX-x86_64.sh
+
+# Initialize Miniconda
+source ~/.bash_profile
+
+# Create a virtual environment
+conda create --name myenv
+
+# Activate the virtual environment
+conda activate myenv
+
+--- Replace 'myenv' with your desired name.
+# Navigate to the directory where the repository was cloned
+
 1. Clone the repository to your local machine:
+
 git clone https://github.com/your-username/sah-mortality-prediction.git
 
-2. Install the required dependencies. Make sure you have Python 3.7 or later installed. Use the following command to install the dependencies:
+3. Install the required dependencies. Make sure you have Python 3.7 or later installed. Use the following command to install the dependencies:
+
 pip install -r requirements.txt
+
    **Note**: Additional dependencies such as FSL, ANTs, and dcm2niix may need to be installed separately. Please refer to their respective documentation for installation instructions.
 
-3. Download the AUCMEDI model file (`3D.DenseNet121.model.best.loss.hdf5`) and place it in the root directory of the repository.
 
 ## Usage
 
