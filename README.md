@@ -50,7 +50,35 @@ Install the required dependencies. Make sure you have Python 3.7 or later instal
 pip install -r requirements.txt
 ```
 
-Note: Additional dependencies such as FSL, ANTs, and dcm2niix may need to be installed separately. Please refer to their respective documentation for installation instructions.
+
+Note: Additional dependencies such as FSL, ANTs, and dcm2niix need to be installed separately and added to the system path. Please follow the instructions below to install them:
+
+### Installing External Dependencies
+
+#### dcm2niix
+
+1. Visit the dcm2niix repository: [https://github.com/rordenlab/dcm2niix](https://github.com/rordenlab/dcm2niix)
+2. Follow the installation instructions provided in the repository to install dcm2niix.
+3. Add dcm2niix to the system path.
+
+#### FSL
+
+1. Visit the FSL installation page: [https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation)
+2. Follow the installation instructions provided to install FSL.
+3. Add FSL to the system path.
+
+## Usage
+
+### Command Line Execution
+
+Prepare your input data:
+
+Create a directory containing the DICOM files of the SAH patients.
+Each patient should have a separate subdirectory with their DICOM files.
+Ensure that the DICOM files contain the necessary information for the prediction (e.g., CT scans).
+
+Run the SAH Mortality Prediction pipeline:
+
 
 ## Usage
 
@@ -67,6 +95,14 @@ python SAH_mortality_prediction.py -i /path/to/input -o /path/to/output --model 
 ```
 
 Replace /path/to/input with the path to the directory containing the DICOM files, and /path/to/output with the desired output directory. The --model argument specifies the path to the AUCMEDI model file.
+
+### Graphical User Interface (GUI) Execution
+
+Alternatively, you can use the graphical user interface (GUI) for execution. Run the following command:
+```
+python gui.py
+```
+This will launch the GUI, allowing you to interactively select the input and output directories without specify the AUCMEDI model file.
 
 View the results:
 
