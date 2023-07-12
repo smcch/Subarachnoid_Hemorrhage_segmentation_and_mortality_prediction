@@ -69,6 +69,15 @@ Note: Additional dependencies such as FSL, ANTs, and dcm2niix need to be install
 
 ## Usage
 
+For Mac OS users: to avoid error reading .DS_Store files, please enter this command line to delet those files from the input and output directories:
+
+```
+find /path/to/directory -name .DS_Store -type f -delete
+```
+
+replace /path/to/directory  with the actual path of the input and output directory.
+
+
 ### Command Line Execution
 
 Prepare your input data:
