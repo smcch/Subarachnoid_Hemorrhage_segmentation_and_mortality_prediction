@@ -102,11 +102,20 @@ python gui.py
 ```
 This will launch the GUI, allowing you to interactively select the input and output directories without specify the AUCMEDI model file.
 
+
+<img width="452" alt="Captura de pantalla 2023-07-12 a las 10 30 09" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/27f2057e-c0f0-411e-a723-7c62b1427d44">
+
+
 View the results:
 
 The pipeline will generate processed NIfTI files and a predictions.csv file in the output directory.
 Additionally, a report in PDF format will be created for each patient, providing the prediction results, volume slices, and XAI slices.
 The report files will be named as report_<subject_id>.pdf.
+
+<img width="331" alt="Captura de pantalla 2023-07-12 a las 10 31 11" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/ff45fd4b-1b24-442b-a69a-013642255de7">
+
+<img width="321" alt="Captura de pantalla 2023-07-12 a las 10 31 23" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/62a56fc0-cdc3-48fa-b922-96a4990db8ef">
+
 
 ## License
 
