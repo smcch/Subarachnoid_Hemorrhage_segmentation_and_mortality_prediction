@@ -16,13 +16,8 @@
 #  You should have received a copy of the GNU General Public License           #
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.       #
 #==============================================================================#
-import os
-import pandas as pd
-import tkinter as tk
-from tkinter import filedialog
-from tkinter import ttk
-from SAH_mortality_prediction import preprocess, predict_aucmedi, generate_report
 
+import pandas as pd
 import os
 import tkinter as tk
 from tkinter import filedialog
@@ -56,9 +51,9 @@ def run_prediction():
         # Generate the report
         subject_id = patient_folder.split("_")[-1]
         volume_nifti = os.path.join(patient_dir, f"{subject_id}_ct.nii.gz")
-        xai_nifti = os.path.join(output_path, f"{subject_id}_ct.nii.gz")
+        xai_nifti = os.path.join(patient_dir, 'aucmedi', f"{subject_id}_ct.nii.gz")  # CHANGE: Read from 'aucmedi' subfolder
         probability = get_probability(patient_dir)
-        generate_report(output_path, subject_id, volume_nifti, xai_nifti, probability)
+        generate_report(patient_dir, subject_id, volume_nifti, xai_nifti, probability)  # CHANGE: Save in patient_dir instead of output_path
 
     # Update status and show "Done" message
     status_label.config(text="Status: Done")
@@ -66,7 +61,7 @@ def run_prediction():
 
 def get_probability(patient_dir):
     # Read the predictions.csv file
-    predictions_file = os.path.join(patient_dir, 'predictions.csv')
+    predictions_file = os.path.join(patient_dir, 'aucmedi', 'predictions.csv')  # CHANGE: Read from 'aucmedi' subfolder
     df_merged = pd.read_csv(predictions_file)
 
     # Get the probability of death

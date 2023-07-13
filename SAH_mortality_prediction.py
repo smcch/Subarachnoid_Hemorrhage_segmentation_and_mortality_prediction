@@ -196,14 +196,14 @@ def predict_aucmedi(path_images, path_model, path_output, path_xai=None, gpu=0):
     df_merged = pd.concat([df_index, df_pd], axis=1, sort=False)
 
     # Save the predictions.csv file in the correct output directory
-    output_dir = os.path.join(path_output, os.path.basename(path_images))
+    output_dir = os.path.join(path_output, os.path.basename(path_images), 'aucmedi')
     os.makedirs(output_dir, exist_ok=True)
     predictions_file = os.path.join(output_dir, 'predictions.csv')
     df_merged.to_csv(predictions_file, index=False)
 
     # Compute XAI if desired
     if path_xai is not None:
-        xai_decoder(test_gen, model, preds, overlay=True, out_path=path_output)
+        xai_decoder(test_gen, model, preds, overlay=True, out_path=output_dir)
 
 from PIL import Image
 
@@ -371,7 +371,7 @@ def main(input_path, output_path, model_path, gpu=0):
         predict_aucmedi(patient_dir, model_path, output_path, output_path, gpu)
 
         # Read the predictions.csv file
-        predictions_file = os.path.join(patient_dir, 'predictions.csv')
+        predictions_file = os.path.join(patient_dir, 'aucmedi', 'predictions.csv')  # CHANGE: Read from 'aucmedi' subfolder
         df_merged = pd.read_csv(predictions_file)
 
         # Extract the subject ID from the patient folder name
@@ -379,11 +379,11 @@ def main(input_path, output_path, model_path, gpu=0):
 
         # Define the paths to the volume and XAI NIfTI files
         volume_nifti = os.path.join(patient_dir, f"{subject_id}_ct.nii.gz")
-        xai_nifti = os.path.join(output_path, f"{subject_id}_ct.nii.gz")
+        xai_nifti = os.path.join(patient_dir, 'aucmedi', f"{subject_id}_ct.nii.gz")  # CHANGE: Read from 'aucmedi' subfolder
 
         # Generate the report
         probability = df_merged.iloc[0]['pd_ASH:1'] * 100
-        generate_report(output_path, subject_id, volume_nifti, xai_nifti, probability)
+        generate_report(patient_dir, subject_id, volume_nifti, xai_nifti, probability)  # CHANGE: Save in patient_dir instead of output_path
 
 
 if __name__ == "__main__":
