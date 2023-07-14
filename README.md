@@ -1,4 +1,4 @@
-# SAH Mortality Prediction
+# Subarachnoid Hemorrhage Mortality Prediction
 
 This repository contains the Python implementation of the paper: "ENHANCED MORTALITY PREDICTION IN PATIENTS WITH SUBARACHNOID HAEMORRHAGE USING A DEEP LEARNING MODEL BASED ON THE INITIAL CT SCAN." Sergio García-García, Santiago Cepeda Chafla, Dominik Müller, Alejandra Mosteiro Cadaval, Ramón Torné-Torné, Silvia Agudo, Natalia de la Torre, Ignacio Arrese, Rosario Sarabia. Under Review.
 
