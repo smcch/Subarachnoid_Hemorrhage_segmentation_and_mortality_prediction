@@ -1,5 +1,7 @@
 # SAH Mortality Prediction
 
+This repository contains the Python implementation of the paper: "ENHANCED MORTALITY PREDICTION IN PATIENTS WITH SUBARACHNOID HAEMORRHAGE USING A DEEP LEARNING MODEL BASED ON THE INITIAL CT SCAN." Sergio García-García, Santiago Cepeda Chafla, Dominik Müller, Alejandra Mosteiro Cadaval, Ramón Torné-Torné, Silvia Agudo, Natalia de la Torre, Ignacio Arrese, Rosario Sarabia. Under Review.
+
 This repository provides a pipeline for predicting mortality in patients with subarachnoid hemorrhage (SAH) using the AUCMEDI framework. The pipeline includes preprocessing of DICOM files, running the AUCMEDI prediction model, and generating a report with prediction results.
 
 ## Installation
@@ -117,9 +119,20 @@ The report files will be named as report_<subject_id>.pdf.
 <img width="321" alt="Captura de pantalla 2023-07-12 a las 10 31 23" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/62a56fc0-cdc3-48fa-b922-96a4990db8ef">
 
 
-## License
+## Citations
 
-This project is licensed under the GNU General Public License v3.0. See the LICENSE file for more details.
+If you find this pipeline useful for your academic purposes, please include the following citations:
+
+- DICOM to NiFTI converter: `dcm2niix`, available at https://github.com/rordenlab/dcm2niix/releases/tag/v1.0.20220720
+	- Li X, Morgan PS, Ashburner J, Smith J, Rorden C. The first step for neuroimaging data analysis: DICOM to NIfTI conversion. J Neurosci Methods. 2016;264:47-56. doi:10.1016/j.jneumeth.2016.03.001.
+- AUCMEDI: a framework for Automated Classification of Medical Images (Version X.Y.Z) [Computer software].
+  - Müller, D., Mayer, S., Hartmann, D., Schneider, P., Soto-Rey, I., & Kramer, F. (2022). https://doi.org/10.5281/zenodo.6633540. GitHub repository. https://github.com/frankkramer-lab/aucmedi
+- ANTsPy. Advanced Normalization Tools in Python. https://github.com/ANTsX/ANTsPy
+- FMRIB Software Library v6.0 - BET (Brain Extraction Tool). https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET
+  - M. Jenkinson, M. Pechaud, and S. Smith. BET2: MR-based estimation of brain, skull and scalp surfaces. In Eleventh Annual Meeting of the Organization for Human Brain Mapping, 2005.
+
+## License
+Creative Commons Attribution-NonCommercial License: This repository is licensed under the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This license allows others to freely use, modify, and distribute the software for non-commercial purposes only. You are granted the right to use this software for personal, educational, and non-profit projects, but commercial use is not permitted without explicit permission. For more details, please refer to the LICENSE file.
 
 ## Contact
 
