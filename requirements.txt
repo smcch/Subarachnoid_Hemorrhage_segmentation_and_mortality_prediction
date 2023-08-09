@@ -8,3 +8,5 @@ pandas==2.0.3
 tensorflow==2.11.1
 tk==0.1.0
 pillow==10.0.0
+pip install "monai-weekly[gdown, nibabel, tqdm, ignite]"
+pip install einops
