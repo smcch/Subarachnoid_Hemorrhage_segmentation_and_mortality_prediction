@@ -1,8 +1,15 @@
-# Subarachnoid Hemorrhage Mortality Prediction
+# Subarachnoid Hemorrhage Automatic Segmentation and Mortality Prediction
 
-This repository contains the Python implementation of the paper: "ENHANCED MORTALITY PREDICTION IN PATIENTS WITH SUBARACHNOID HAEMORRHAGE USING A DEEP LEARNING MODEL BASED ON THE INITIAL CT SCAN." Sergio García-García, Santiago Cepeda Chafla, Dominik Müller, Alejandra Mosteiro Cadaval, Ramón Torné-Torné, Silvia Agudo, Natalia de la Torre, Ignacio Arrese, Rosario Sarabia. Under Review.
+This repository contains the Python implementation of the papers: 
 
-This repository provides a pipeline for predicting mortality in patients with subarachnoid hemorrhage (SAH) using the AUCMEDI framework. The pipeline includes preprocessing of DICOM files, running the AUCMEDI prediction model, and generating a report with prediction results.
+- "ENHANCED MORTALITY PREDICTION IN PATIENTS WITH SUBARACHNOID HAEMORRHAGE USING A DEEP LEARNING MODEL BASED ON THE INITIAL CT SCAN." Sergio García-García, Santiago Cepeda Chafla, Dominik Müller, Alejandra Mosteiro Cadaval, Ramón Torné-Torné, Silvia Agudo, Natalia de la Torre, Ignacio Arrese, Rosario Sarabia. Under Review.
+- "An End-To-End Pipeline for Fully Automatic Subarachnoid Hemorrhage Segmentation in CT scans using Swin Transformers". Sergio García-García, Santiago Cepeda Chafla, Ignacio Arrese and Rosario Sarabia. Under Review.
+
+The repository introduces a streamlined pipeline for:
+    Automatic Bleeding Segmentation: This segment utilizes the MONAI framework to perform segmentation on non-contrast CT scans from patients diagnosed with subarachnoid hemorrhage.
+    Mortality Risk Prediction: Predicts the mortality risk within a span of 3 months post-admission using the AUCMEDI framework.
+
+The comprehensive pipeline encompasses DICOM file preprocessing, automatic segmentation using a Vision Transformer (ViT)-based model, mortality prediction through the AUCMEDI model, and the generation of a detailed report. This report includes prediction outcomes, segmentation files, and a volumetric analysis of the bleeding.
 
 ## Installation
 
@@ -80,7 +87,7 @@ find /path/to/directory -name .DS_Store -type f -delete
 replace /path/to/directory  with the actual path of the input and output directory.
 
 
-### Command Line Execution
+### Command Line Execution for mortality prediction task
 
 Prepare your input data:
 
@@ -96,16 +103,44 @@ python SAH_mortality_prediction.py -i /path/to/input -o /path/to/output --model 
 
 Replace /path/to/input with the path to the directory containing the DICOM files, and /path/to/output with the desired output directory. The --model argument specifies the path to the AUCMEDI model file.
 
+### Command Line Execution for automatic segmetation
+
+Setting Up the Pretrained Model:
+
+    Begin by downloading the pretrained model for the pipeline.
+
+    Click on the link below to access the model:
+
+    [Download Pretrained Model](https://drive.google.com/file/d/1ChgWWranUdj6w3NXXy_RDP2gRQTMNc35/view?usp=drive_link)
+
+Ensure you place the downloaded model in the appropriate directory as mentioned in subsequent steps or as required by the pipeline.
+
+Expected Input Format:
+Ensure your processed non-contrast CT scan in NIfTI format is structured as follows:
+
+´´
+input_folder/
+└── subject_ID/
+    └── subject_ID_ct.nii.gz
+´´
+
+Then run the comman:
+
+```
+python inference_2.py --input_dir --output_dir
+```
+
 ### Graphical User Interface (GUI) Execution
 
-Alternatively, you can use the graphical user interface (GUI) for execution. Run the following command:
+Alternatively, you can use the graphical user interface (GUI) for execution of both tasks (segmentation and mortality prediction). Run the following command:
 ```
 python gui.py
 ```
 This will launch the GUI, allowing you to interactively select the input and output directories without specify the AUCMEDI model file.
 
 
-<img width="452" alt="Captura de pantalla 2023-07-12 a las 10 30 09" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/27f2057e-c0f0-411e-a723-7c62b1427d44">
+![imagen](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/5f97192e-3ce1-4a87-9224-ee319acc2ad1)
+
 
 
 View the results:
@@ -114,9 +149,10 @@ The pipeline will generate processed NIfTI files and a predictions.csv file in t
 Additionally, a report in PDF format will be created for each patient, providing the prediction results, volume slices, and XAI slices.
 The report files will be named as report_<subject_id>.pdf.
 
-<img width="331" alt="Captura de pantalla 2023-07-12 a las 10 31 11" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/ff45fd4b-1b24-442b-a69a-013642255de7">
+![imagen](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/b4be72a5-b53a-4c12-b7c5-6a7c67882a81)
 
-<img width="321" alt="Captura de pantalla 2023-07-12 a las 10 31 23" src="https://github.com/smcch/Subarachnoid_Hemorrhage_mortality_prediction/assets/87584415/62a56fc0-cdc3-48fa-b922-96a4990db8ef">
+![imagen](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/3c6a2c09-cac3-416f-9b7c-5a5a1695bbdb)
+
 
 
 ## Citations
