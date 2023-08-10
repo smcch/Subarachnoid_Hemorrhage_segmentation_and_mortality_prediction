@@ -11,6 +11,9 @@ The repository introduces a streamlined pipeline for:
 
 The comprehensive pipeline encompasses DICOM file preprocessing, automatic segmentation using a Vision Transformer (ViT)-based model, mortality prediction through the AUCMEDI model, and the generation of a detailed report. This report includes prediction outcomes, segmentation files, and a volumetric analysis of the bleeding.
 
+![imagen](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/bd1e2bda-c48f-42de-8e96-a417c920389f)
+
+
 ## Installation
 
 Download the Miniconda installer:
