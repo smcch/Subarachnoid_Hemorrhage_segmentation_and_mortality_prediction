@@ -107,22 +107,22 @@ Replace /path/to/input with the path to the directory containing the DICOM files
 
 Setting Up the Pretrained Model:
 
-    Begin by downloading the pretrained model for the pipeline.
+Begin by downloading the pretrained model for the pipeline.
 
-    Click on the link below to access the model:
+Click on the link below to access the model:
 
-    [Download Pretrained Model](https://drive.google.com/file/d/1ChgWWranUdj6w3NXXy_RDP2gRQTMNc35/view?usp=drive_link)
+[Download Pretrained Model](https://drive.google.com/file/d/1ChgWWranUdj6w3NXXy_RDP2gRQTMNc35/view?usp=drive_link)
 
 Ensure you place the downloaded model in the appropriate directory as mentioned in subsequent steps or as required by the pipeline.
 
 Expected Input Format:
 Ensure your processed non-contrast CT scan in NIfTI format is structured as follows:
 
-´´
+```
 input_folder/
 └── subject_ID/
     └── subject_ID_ct.nii.gz
-´´
+```
 
 Then run the comman:
 
@@ -166,6 +166,7 @@ If you find this pipeline useful for your academic purposes, please include the 
 - ANTsPy. Advanced Normalization Tools in Python. https://github.com/ANTsX/ANTsPy
 - FMRIB Software Library v6.0 - BET (Brain Extraction Tool). https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET
   - M. Jenkinson, M. Pechaud, and S. Smith. BET2: MR-based estimation of brain, skull and scalp surfaces. In Eleventh Annual Meeting of the Organization for Human Brain Mapping, 2005.
+- MONAI: Medical Open Network for Artificial Intelligence https://zenodo.org/record/8018287	https://monai.io/
 
 ## License
 Creative Commons Attribution-NonCommercial License: This repository is licensed under the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This license allows others to freely use, modify, and distribute the software for non-commercial purposes only. You are granted the right to use this software for personal, educational, and non-profit projects, but commercial use is not permitted without explicit permission. For more details, please refer to the LICENSE file.
