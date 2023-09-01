@@ -278,7 +278,7 @@ def generate_report(output_dir, subject_id, volume_nifti, xai_nifti, probability
     c.set_text_color(128)
 
     # Add the footer
-    c.cell(0, 10, "C.A.R.U.N. - Computational Analysis Research Unit for Neurosurgery", 0, 0, 'C')
+    c.cell(0, 10, "N.I.C.A.R.U. - Neurosurgical Imaging and Computational Analysis Research Unit", 0, 0, 'C')
     c.ln()  # Move to the next line
     c.cell(0, 10, "Río Hortega University Hospital - Valladolid - Spain", 0, 0, 'C')
 
