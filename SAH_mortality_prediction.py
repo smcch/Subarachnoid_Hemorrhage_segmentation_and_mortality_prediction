@@ -39,7 +39,11 @@ from PIL import ImageFont
 
 
 def dicom_to_nifti(dicom_dir, output_dir):
-    command = ['dcm2niix', '-o', output_dir, dicom_dir]
+    # Extract the directory name
+    dicom_folder_name = os.path.basename(dicom_dir)
+
+    # Set the output filename to be the name of the DICOM directory
+    command = ['dcm2niix', '-f', dicom_folder_name, '-p', 'y', '-z', 'y', '-m', 'y', '-o', output_dir, dicom_dir]
     subprocess.run(command)
 
 
