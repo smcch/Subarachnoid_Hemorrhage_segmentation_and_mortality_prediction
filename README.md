@@ -2,7 +2,7 @@
 
 This repository contains the Python implementation of the papers: 
 
-- "Enhanced Mortality Prediction In Patients With Subarachnoid Haemorrhage Using A Deep Learning Model Based On The Initial CT Scan" Sergio García-García, Santiago Cepeda Chafla, Dominik Müller, Alejandra Mosteiro Cadaval, Ramón Torné-Torné, Silvia Agudo, Natalia de la Torre, Ignacio Arrese, Rosario Sarabia. Pre-print. arXiv:2308.13373  https://doi.org/10.48550/arXiv.2308.13373
+- "Mortality Prediction of Patients with Subarachnoid Hemorrhage Using a Deep Learning Model Based on an Initial Brain CT Scan". García-García S, Cepeda S, Müller D, Mosteiro A, Torné R, Agudo S, de la Torre N, Arrese I, Sarabia R. Brain Sciences.  2024; 14(1):10. https://doi.org/10.3390/brainsci14010010 
 - "An End-To-End Pipeline for Fully Automatic Subarachnoid Hemorrhage Segmentation in CT scans using Swin Transformers". Sergio García-García, Santiago Cepeda Chafla, Ignacio Arrese and Rosario Sarabia. 
 
 The repository introduces a streamlined pipeline for:
