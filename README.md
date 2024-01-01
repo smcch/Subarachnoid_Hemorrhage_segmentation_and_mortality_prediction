@@ -3,10 +3,12 @@
 This repository contains the Python implementation of the papers: 
 
 - "Mortality Prediction of Patients with Subarachnoid Hemorrhage Using a Deep Learning Model Based on an Initial Brain CT Scan". García-García S, Cepeda S, Müller D, Mosteiro A, Torné R, Agudo S, de la Torre N, Arrese I, Sarabia R. Brain Sciences.  2024; 14(1):10. https://doi.org/10.3390/brainsci14010010 
-- "An End-To-End Pipeline for Fully Automatic Subarachnoid Hemorrhage Segmentation in CT scans using Swin Transformers". Sergio García-García, Santiago Cepeda Chafla, Ignacio Arrese and Rosario Sarabia. 
+- "A Fully Automated Pipeline Using Swin Transformers for Deep Learning-Based Blood Segmentation on Head CT Scans After Aneurysmal Subarachnoid Hemorrhage". Sergio García-García, Santiago Cepeda Chafla, Ignacio Arrese and Rosario Sarabia. 2024 https://doi.org/10.48550/arXiv.2312.17553
 
 The repository introduces a streamlined pipeline for:
+
     Automatic Bleeding Segmentation: This segment utilizes the MONAI framework to perform segmentation on non-contrast CT scans from patients diagnosed with subarachnoid hemorrhage.
+    
     Mortality Risk Prediction: Predicts the mortality risk within a span of 3 months post-admission using the AUCMEDI framework.
 
 The comprehensive pipeline encompasses DICOM file preprocessing, automatic segmentation using a Vision Transformer (ViT)-based model, mortality prediction through the AUCMEDI model, and the generation of a detailed report. This report includes prediction outcomes, segmentation files, and a volumetric analysis of the bleeding.
