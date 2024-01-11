@@ -116,7 +116,9 @@ Begin by downloading the pretrained model for the pipeline.
 
 Click on the link below to access the model:
 
-[Download Pretrained Model](https://drive.google.com/file/d/1ChgWWranUdj6w3NXXy_RDP2gRQTMNc35/view?usp=drive_link)
+
+
+[Download Pretrained Model] (https://drive.google.com/file/d/1ChgWWranUdj6w3NXXy_RDP2gRQTMNc35/view?usp=sharing)
 
 Ensure you place the downloaded model in the appropriate directory as mentioned in subsequent steps or as required by the pipeline.
 
