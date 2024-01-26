@@ -156,7 +156,7 @@ The pipeline will generate processed NIfTI files and a predictions.csv file in t
 Additionally, a report in PDF format will be created for each patient, providing the prediction results, volume slices, and XAI slices.
 The report files will be named as report_<subject_id>.pdf.
 
-![imagen](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/b4be72a5-b53a-4c12-b7c5-6a7c67882a81)
+![nicaru](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/9e7af488-d89d-4e1c-8542-916801244beb)
 
 ![imagen](https://github.com/smcch/Subarachnoid_Hemorrhage_segmentation_and_mortality_prediction/assets/87584415/3c6a2c09-cac3-416f-9b7c-5a5a1695bbdb)
 
