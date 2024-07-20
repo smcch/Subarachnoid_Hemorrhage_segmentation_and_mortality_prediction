@@ -7,9 +7,9 @@ This repository contains the Python implementation of the papers:
 
 The repository introduces a streamlined pipeline for:
 
-    Automatic Bleeding Segmentation: This segment utilizes the MONAI framework to perform segmentation on non-contrast CT scans from patients diagnosed with subarachnoid hemorrhage.
+1) Automatic Bleeding Segmentation: This segment utilizes the MONAI framework to perform segmentation on non-contrast CT scans from patients diagnosed with subarachnoid hemorrhage.
     
-    Mortality Risk Prediction: Predicts the mortality risk within a span of 3 months post-admission using the AUCMEDI framework.
+2) Mortality Risk Prediction: Predicts the mortality risk within a span of 3 months post-admission using the AUCMEDI framework.
 
 The comprehensive pipeline encompasses DICOM file preprocessing, automatic segmentation using a Vision Transformer (ViT)-based model, mortality prediction through the AUCMEDI model, and the generation of a detailed report. This report includes prediction outcomes, segmentation files, and a volumetric analysis of the bleeding.
 
