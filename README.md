@@ -3,7 +3,7 @@
 This repository contains the Python implementation of the papers: 
 
 - "Mortality Prediction of Patients with Subarachnoid Hemorrhage Using a Deep Learning Model Based on an Initial Brain CT Scan". García-García S, Cepeda S, Müller D, Mosteiro A, Torné R, Agudo S, de la Torre N, Arrese I, Sarabia R. Brain Sciences.  2024; 14(1):10. https://doi.org/10.3390/brainsci14010010 
-- "A Fully Automated Pipeline Using Swin Transformers for Deep Learning-Based Blood Segmentation on Head Computed Tomography Scans After Aneurysmal Subarachnoid Hemorrhage". García-García S, Cepeda S, Arrese I, Sarabia R. World Neurosurg. Published online August 5, 2024. doi:10.1016/j.wneu.2024.07.216
+- "A Fully Automated Pipeline Using Swin Transformers for Deep Learning-Based Blood Segmentation on Head Computed Tomography Scans After Aneurysmal Subarachnoid Hemorrhage". García-García S, Cepeda S, Arrese I, Sarabia R. World Neurosurg. Published online August 5, 2024. https://doi:10.1016/j.wneu.2024.07.216
 
 The repository introduces a streamlined pipeline for:
 
