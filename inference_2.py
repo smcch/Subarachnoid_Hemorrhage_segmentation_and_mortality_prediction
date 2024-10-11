@@ -1,3 +1,9 @@
+# ==============================================================================#
+#  Author:       Santiago Cepeda, Dominik Müller                                #
+#  Copyright:    Río Hortega University Hospital in Valladolid, Spain           #
+#                University of Augsburg, Germany                                #
+# ==============================================================================#
+
 import argparse
 import glob
 import os
