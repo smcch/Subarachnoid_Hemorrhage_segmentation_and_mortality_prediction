@@ -1,4 +1,27 @@
-# Subarachnoid Hemorrhage Automatic Segmentation and Mortality Prediction
+# 🚨🧠 **Aneurysmal Subarachnoid Hemorrhage Mortality Predictor is Now Live!** 🌐💻
+
+### 🎯 A powerful tool to estimate early mortality risk after aneurysmal SAH is now **freely available online**.
+
+👉 Try it now at: [**https://geibac.uva.es/**](https://geibac.uva.es/) 🔗
+
+🧪 Developed by the [GEIBAC Research Group] — Biomedical Imaging and Computational Analysis  
+🤝 In collaboration with the Neurosurgery Department of **Río Hortega University Hospital** and **The University of Augsburg**
+
+---
+
+📝 **Mortality-SAH** is distributed under the **Academic Non-Commercial Source Code License Agreement**.  
+🚫 It is strictly intended for **research use only** and **not designed for clinical decision-making**.
+
+🔬 The tool is currently in the validation phase as part of the funded project:  
+**PI-24-614-H** — *Application of Artificial Intelligence to Prognostic Factors in Aneurysmal Subarachnoid Hemorrhage*
+
+---
+
+💬 **Interested in collaborating, validating the tool, or contributing to the project?**  
+We welcome clinicians, researchers, and students to join us in this initiative!
+
+📧 Contact us at: [scepedac@saludcastillayleon.es](mailto:scepedac@saludcastillayleon.es)
+
 
 This repository contains the Python implementation of the papers: 
 
